@@ -10,7 +10,9 @@
 	float: left;
 
 }
-
+a {
+  text-decoration-line: none;
+  }
 </style>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -19,14 +21,15 @@
 		id="";
 	}
 %>
-<h1 align="center">NAK MARKET</h1>
+<h1 align="center"><a href="../home/main.jsp" >NAK MARKET</a></h1>
 <table width ="1000" border="1" align="center">
 
 <tr><td>
 <%if(id.equals("")){ %>
-<span style="text-align: right; " class="right" > <a href="login.jsp">로그인</a>  <a href="join.jsp">회원가입</a></span>
+<span style="text-align: right; " class="right" > <a href="../home/login.jsp">로그인</a>  <a href="../home/join.jsp">회원가입</a></span>
 <%}else{ %>
-<span style="text-align: right; " class="right" > <a href=""><%=id %>님</a> <a href="main.jsp">로그아웃</a></span>
+<a class="right" href="prductSell.jsp?id=<%=id%>"><img src="https://m.bunjang.co.kr/pc-static/resource/bcc7abb5d531bcf26033.png" width="23" height="26" alt="판매하기버튼 이미지">판매하기</a>
+<a class="right" href="/shop/12168604/products"><img src="https://m.bunjang.co.kr/pc-static/resource/31370b164bc5b7cc4fef.png" width="23" height="24" alt="내상점버튼 이미지">내상점</a>
 <%} %>
 <br>
 
@@ -35,9 +38,10 @@
 <th> <span style="text-align:left;" class="left" >   NAK </span>
 
 
-<a href="">중고거래</a> |
+<a href="../trade/tradeMain.jsp?id=<%=id%>">중고거래</a> |
 <a href="">알바</a> |
 <a href="">동네 게시판</a>
+ 
  
 <span  style="text-align:  right;" class="right">
 <input type="text" name="search" placeholder="물품을 검색해보세요">

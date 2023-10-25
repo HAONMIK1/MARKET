@@ -7,7 +7,7 @@
 	String userid=request.getParameter("userid");
 	
 	UserDAO udao =UserDAO.getInstance();
-	boolean check = udao.searchID(userid);
+	boolean check = udao.selectID(userid);
 	String str="";
 	if(check){
 		str= "NO";

@@ -40,7 +40,7 @@ public class UserDAO {
 		cnt = ps.executeUpdate();
 		return cnt;
 	}
-	public boolean searchID(String userid) throws Exception{
+	public boolean selectID(String userid) throws Exception{
 		boolean check=false;
 		Connection conn=getConnection();
 		String sql = "select * from users where id = ?";
@@ -66,4 +66,34 @@ public class UserDAO {
 		}
 		return check;
 	}
+	public String searchNameHP(UserBean ub) throws Exception {
+		String id="";
+		Connection conn=getConnection();
+		String sql = "select * from users where name = ? ";
+		ps =conn.prepareStatement(sql);
+		ps.setString(1, ub.getName());
+		rs   = ps.executeQuery();
+		if(rs.next()) {
+			if(rs.getString("hp").equals(ub.getHp())) {
+				id= rs.getString("id");
+			}
+		}else {}
+		return id;
+	}
+	public String searchIDNameHp(UserBean ub) throws Exception{
+		String pw ="";
+		Connection conn=getConnection();
+		String sql = "select * from users where name = ? and id=? and hp=?";
+		ps =conn.prepareStatement(sql);
+		ps.setString(1, ub.getName());
+		ps.setString(2, ub.getId());
+		ps.setString(3, ub.getHp());
+		rs   = ps.executeQuery();
+		if(rs.next()) {
+			pw = rs.getString("password");
+		}else {}
+		return pw;
+	}
+	
+	
 }
