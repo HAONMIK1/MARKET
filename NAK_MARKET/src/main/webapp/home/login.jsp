@@ -5,7 +5,7 @@
 <script src="loginScript.jsp"></script>
 <jsp:include page="top.jsp"/>
 <form action="loginProc.jsp" method="post">
-<tr>
+<tr height="500">
 <td width="1000" height="500" align="center">
 <input type="id"maxlength="80" name="id" class="member_id" placeholder="아이디" autocomplete="off">
 <br>

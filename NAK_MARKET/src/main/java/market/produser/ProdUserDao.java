@@ -5,6 +5,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -33,19 +34,32 @@ public class ProdUserDao {
 		System.out.println("conn:"+conn);
 		return conn;
 	}
+	public ArrayList<ProdUserBean> selectID(String userid) throws Exception{
+		Connection conn=getConnection();
+		ArrayList<ProdUserBean> lists =new ArrayList<ProdUserBean>() ; 
+		String sql = "select * from prodtrade_"+userid;
+		ps =conn.prepareStatement(sql);
+		rs   = ps.executeQuery();
+		while(rs.next()){
+			ProdUserBean pub=new ProdUserBean(); 
+			pub.setTimg(rs.getString("timg"));
+			pub.setTcate(rs.getString("tcate"));
+			pub.setTname(rs.getString("tname"));
+			pub.setTlocation(rs.getString("tlocation"));
+			pub.setTprice(Integer.parseInt(rs.getString("tprice")));
+			pub.setTinfor(rs.getString("tinfor"));
+			lists.add(pub);
+		}
+		return lists;
+	}
 	public int insertUser(ProdUserBean pb, String id) throws Exception{
 	    int cnt = 0;
 
-	
 	        conn = getConnection();
 	        String tableName = "prodtrade_" + id;
+	        String seqName = "trade_" + id+"seq";
 	        
-	        if (!tableExists(conn, tableName)) {
-	            // 테이블이 존재하지 않으면 CREATE TABLE 문 실행
-	            createTable(conn, tableName);
-	        }
-
-	        String sql = "INSERT INTO " + tableName + " VALUES(tradeseq_"+tableName+".nextval, ?, ?, ?, ?, ?, ?);";
+	        String sql = "INSERT INTO " + tableName + " VALUES("+seqName+".nextval, ?, ?, ?, ?, ?, ?)";
 
 	        ps = conn.prepareStatement(sql);
 	        ps.setString(1, pb.getTimg());
@@ -58,31 +72,8 @@ public class ProdUserDao {
 	        cnt = ps.executeUpdate();
 	    return cnt;
 	}
-	private boolean tableExists(Connection conn, String tableName) throws SQLException {
-	    DatabaseMetaData meta = conn.getMetaData();
-	    ResultSet tables = meta.getTables(null, null, tableName, null);
-	    return tables.next();
-	}
 
-	private void createTable(Connection conn, String tableName) throws SQLException {
-	    String createTableSQL = "CREATE TABLE " + tableName + " ("
-	            + "id NUMBER PRIMARY KEY, "
-	            + "timg VARCHAR(255), "
-	            + "tname VARCHAR(255), "
-	            + "tcate VARCHAR(255), "
-	            + "tlocation VARCHAR(255), "
-	            + "tprice NUMBER, "
-	            + "tinfor VARCHAR(255)"
-	            + ")";
-	    
-	    PreparedStatement createTableStatement = conn.prepareStatement(createTableSQL);
-	    createTableStatement.executeUpdate();
-	    
-	    String createSequenceSQL = "CREATE SEQUENCE tradeseq_" + tableName + " NOCACHE";
-        
-        PreparedStatement ps = conn.prepareStatement(createSequenceSQL);
-        ps.executeUpdate();
-	}
+	
 
 
 }

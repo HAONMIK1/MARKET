@@ -20,13 +20,15 @@ request.setCharacterEncoding("UTF-8");
 	PUB.setTimg(timg);
 ProdUserDao puDao=ProdUserDao.getInstance();
 ProdDao pDao=ProdDao.getInstance();
-
-	int cnt = puDao.insertUser(PUB,id);
-	 cnt += pDao.insertUser(PB);
-if(cnt==1){
+	System.out.print(PUB.getTlocation());
+	int cnt = pDao.insertUser(PB);
+	 cnt = puDao.insertUser(PUB,id);
+if(cnt>=1){
+	
 %>
 <script type="text/javascript">
 alert("성공!!!!!!!!!!");
-location.href("tradeMain.jsp?id=<%=id%>");
+location.href="tradeuser.jsp?id=<%=id%>";
 </script>
+
 <%}%>

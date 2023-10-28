@@ -13,7 +13,7 @@ https://login.coupang.com/login/memberJoinFrm.pang?rtnUrl=https%3A%2F%2Fwww.coup
 </style>
  <jsp:include page="top.jsp"/>  
 <tr> <td align="center">
-  <table>
+  <table height="500">
   	<tr>
   		<td>
   			<form action="joinProc.jsp" method="post">

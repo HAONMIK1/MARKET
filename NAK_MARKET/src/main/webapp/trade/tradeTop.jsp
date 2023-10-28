@@ -21,15 +21,15 @@ a {
 		id="";
 	}
 %>
-<h1 align="center"><a href="../home/main.jsp" >NAK MARKET</a></h1>
-<table width ="1000" border="1" align="center">
+<h1 align="center"><a href="../home/main.jsp?id=<%=id %>" >NAK MARKET</a></h1>
+<table width ="1000" border="0" align="center">
 
 <tr><td>
 <%if(id.equals("")){ %>
 <span style="text-align: right; " class="right" > <a href="../home/login.jsp">로그인</a>  <a href="../home/join.jsp">회원가입</a></span>
 <%}else{ %>
 <a class="right" href="prductSell.jsp?id=<%=id%>"><img src="https://m.bunjang.co.kr/pc-static/resource/bcc7abb5d531bcf26033.png" width="23" height="26" alt="판매하기버튼 이미지">판매하기</a>
-<a class="right" href="/shop/12168604/products"><img src="https://m.bunjang.co.kr/pc-static/resource/31370b164bc5b7cc4fef.png" width="23" height="24" alt="내상점버튼 이미지">내상점</a>
+<a class="right" href="tradeuser.jsp?id=<%=id%>"><img src="https://m.bunjang.co.kr/pc-static/resource/31370b164bc5b7cc4fef.png" width="23" height="24" alt="내상점버튼 이미지">내상점</a>
 <%} %>
 <br>
 

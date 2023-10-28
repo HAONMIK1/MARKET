@@ -22,7 +22,7 @@ a {
 	}
 %>
 <h1 align="center"><a href="../home/main.jsp?id=<%=id%>" >NAK MARKET</a></h1>
-<table width ="1000" border="1" align="center">
+<table width ="1000" align="center">
 
 <tr><td>
 <%if(id.equals("")){ %>

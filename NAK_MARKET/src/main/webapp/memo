@@ -22,8 +22,8 @@ drop table prodtrade purge ;
 
 create sequence tradeseq nocache ;
 create table prodtrade(
- 
-	pid			varchar2(100) primary key, 
+ 	pnum		number primary key, 
+	pid			varchar2(100) not null, 
 	pimg 		varchar2(100) not null, 
 	pname 		varchar2(50) not null ,
 	pcate 		varchar2(50) not null ,
@@ -32,7 +32,7 @@ create table prodtrade(
 	pinfor	 	varchar2(1000) not null
 );
 commit;
-insert into prodtrade values('noa2006', 'Mac.jpg', '맥북프로 16인치', '디지털', '고양시 덕양구 행신동',2600000,'팜') ;
+insert into prodtrade values(tradeseq.nextval,'noa2006', 'Mac.jpg', '맥북프로 16인치', '디지털', '고양시 덕양구 행신동',2600000,'팜') ;
 
 --사용자
 drop sequence tradeseq_?;

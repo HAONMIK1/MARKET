@@ -3,6 +3,7 @@ package market.users;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -38,6 +39,7 @@ public class UserDAO {
 		ps.setString(3, ub.getPassword());
 		ps.setString(4, ub.getHp());
 		cnt = ps.executeUpdate();
+		createTable(conn, ub.getId());
 		return cnt;
 	}
 	public boolean selectID(String userid) throws Exception{
@@ -94,6 +96,29 @@ public class UserDAO {
 		}else {}
 		return pw;
 	}
-	
+
+	private void createTable(Connection conn, String id) throws SQLException {
+        String tableName = "prodtrade_" + id;
+        String seqName = "trade_" + id+"seq";
+
+String createTableSQL = "CREATE TABLE " + tableName + " ("
+	            + "tnum NUMBER PRIMARY KEY, "
+	            + "timg VARCHAR(255), "
+	            + "tname VARCHAR(255), "
+	            + "tcate VARCHAR(255), "
+	            + "tlocation VARCHAR(255), "
+	            + "tprice NUMBER, "
+	            + "tinfor VARCHAR(255)"
+	            + ")";
+	    
+	    PreparedStatement createTableStatement = conn.prepareStatement(createTableSQL);
+	    createTableStatement.executeUpdate();
+	    
+	    String createSequenceSQL = "CREATE SEQUENCE "+seqName+" nocache";
+	    createTableStatement.executeUpdate();
+
+	    
+	}
+
 	
 }

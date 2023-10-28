@@ -73,10 +73,10 @@ ol, ul {
 
 										// 시/도에 따라 구/군 옵션 업데이트
 										if (citySelect.value === "서울특별시") {
-											districtSelect.innerHTML = "<option value='강남구'>강남구</option><option value='강서구'>강서구</option>";
+											districtSelect.innerHTML = "<option>선 택</option><option value='강남구'>강남구</option><option value='강서구'>강서구</option>";
 										} else if (citySelect.value === "고양시") {
 											districtSelect.innerHTML = 
-												"<option value='일산동구'>일산동구</option><option value='일산서구'>일산서구</option><option value='덕양구'>덕양구</option>";
+												"<option>선 택</option><option value='일산동구'>일산동구</option><option value='일산서구'>일산서구</option><option value='덕양구'>덕양구</option>";
 										} else {
 											// 다른 시/도의 경우에도 마찬가지로 처리
 											districtSelect.innerHTML = "";
@@ -84,28 +84,27 @@ ol, ul {
 
 									}
 									function updateNeighborhoods() {
-										var districtSelect = document
-												.getElementById("district");
+										var districtSelect = document.getElementById("district");
 										var neighborhoodSelect = document
 												.getElementById("neighborhood");
 										if (districtSelect.value === "강남구") {
-											neighborhoodSelect.innerHTML = "<option value='청담동'>청담동</option><option value='역삼동'>역삼동</option>";
+											neighborhoodSelect.innerHTML = "<option>선 택</option><option value='청담동'>청담동</option><option value='역삼동'>역삼동</option>";
 										} else if (districtSelect.value === "강서구") {
-											neighborhoodSelect.innerHTML = "<option value='등촌동'>등촌동</option><option value='화곡동'>화곡동</option>";
+											neighborhoodSelect.innerHTML = "<option>선 택</option><option value='등촌동'>등촌동</option><option value='화곡동'>화곡동</option>";
 										} else if (districtSelect.value === "일산동구") {
-											neighborhoodSelect.innerHTML = "<option value='백석동'>백석동</option><option value='마두동'>마두동</option>";
+											neighborhoodSelect.innerHTML = "<option>선 택</option><option value='백석동'>백석동</option><option value='마두동'>마두동</option>";
 										} else if (districtSelect.value === "일산서구") {
-											neighborhoodSelect.innerHTML = "<option value='대화동'>대화동</option><option value='일산동'>일산동</option>";
+											neighborhoodSelect.innerHTML = "<option>선 택</option><option value='대화동'>대화동</option><option value='일산동'>일산동</option>";
 										} else if (districtSelect.value === "덕양구") {
-											neighborhoodSelect.innerHTML = "<option value='행신동'>행신동</option><option value='화정동'>화정동</option>";
+											neighborhoodSelect.innerHTML = "<option>선 택</option><option value='행신동'>행신동</option><option value='화정동'>화정동</option>";
 										} else {
 											neighborhoodSelect.innerHTML = "";
 										}
 									}
 								</script>
-
 								<label for="city">시/도:</label> 
 								<select id="city" name="city"onchange="updateDistricts()">
+								<option>선 택</option>
 									<option value="서울특별시">서울특별시</option>
 									<option value="고양시">고양시</option>
 								</select>
@@ -115,7 +114,7 @@ ol, ul {
 								</select>
 								
 								<label for="neighborhood">동/읍/면:</label> 
-								<select id="neighborhood" name="neighborhood">
+								<select id="neighborhood" name="tlocation" onchange="ValueTLoction()">
 								</select>
 							</div>
 						</div></li>
