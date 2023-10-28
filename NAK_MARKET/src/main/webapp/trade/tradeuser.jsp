@@ -25,13 +25,14 @@
     ArrayList<ProdUserBean> lists =new ArrayList<ProdUserBean>() ; 
     lists =udao.selectID(id);
     for(int i=0;i<lists.size();i++){
-		ProdUserBean pub =new ProdUserBean(); 
-    	pub =lists.get(i);
+		ProdUserBean pub =lists.get(i);
     	%>
-				<td align="center">
-				<img src="../../img/<%=pub.getTimg()%>" width="100"> <br>
-					<%=pub.getTcate() %><br> <%=pub.getTlocation() %><br> <%=pub.getTname() %><br>
-					<%=pub.getTprice() %></td>
+				<td align="center"><a href="tradeProductsU.jsp?id=<%=id%>&tnum=<%=pub.getTnum()%>">
+				<img src="../img/<%=pub.getTimg()%>" width="100"> <br>
+					<br> <%=pub.getTlocation() %><br> <%=pub.getTname() %><br>
+					<%=pub.getTprice() %>
+				</a>
+					</td>
 				<%if((i+1)%3==0){ %>
 			</tr>
 			<%} }%>

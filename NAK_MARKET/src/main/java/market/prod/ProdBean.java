@@ -1,7 +1,15 @@
 package market.prod;
 
 public class ProdBean {
+	
+	private String pnum;
 	private String id;
+	public String getPnum() {
+		return pnum;
+	}
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
+	}
 	private String timg;
 	private String tname;
 	private String tcate;

@@ -66,8 +66,7 @@
 		<section>
 			<%
 			ProdDao pdao = ProdDao.getInstance();
-			ArrayList<ProdBean> lists = new ArrayList<ProdBean>();
-			lists = pdao.selectProd();
+			ArrayList<ProdBean> lists = pdao.selectProd();;
 			%>
 			<table align="center">
 				<tr align="center">
@@ -75,9 +74,9 @@
 					for (int i = 0; i < lists.size(); i++) {
 						ProdBean pub = lists.get(i);
 					%>
-					<td width="400" align="center">
+					<td width="400" align="center"><a href="tradeProducts.jsp?id=<%=id%>&pnum=<%=pub.getPnum()%>">
 					<img
-						src="../../img/<%=pub.getTimg()%>" width="300"> <br>
+						src="../img/<%=pub.getTimg()%>" width="300"> <br>
 						<table height ="60" align="center">
 							<tr>
 								<td><%=pub.getTcate()%></td> 
@@ -91,7 +90,9 @@
 							<tr>
 								<td><%=pub.getTprice()%></td>
 							</tr>
-						</table></td>
+						</table>
+						</a>
+						</td>
 					<%
 					if ((i + 1) % 3 == 0) {
 					%>

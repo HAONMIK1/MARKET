@@ -55,17 +55,46 @@ public class ProdDao {
 		ps =conn.prepareStatement(sql);
 		rs   = ps.executeQuery();
 		while(rs.next()) {
-			ProdBean pub=new ProdBean(); 
-			pub.setId(rs.getString("pid"));
-			pub.setTimg(rs.getString("pimg"));
-			pub.setTcate(rs.getString("pcate"));
-			pub.setTname(rs.getString("pname"));
-			pub.setTlocation(rs.getString("plocation"));
-			pub.setTprice(Integer.parseInt(rs.getString("pprice")));
-			pub.setTinfor(rs.getString("pinfor"));
-			lists.add(pub);
+			ProdBean pb=new ProdBean(); 
+			pb.setPnum(rs.getString("pnum"));
+			pb.setId(rs.getString("pid"));
+			pb.setTimg(rs.getString("pimg"));
+			pb.setTcate(rs.getString("pcate"));
+			pb.setTname(rs.getString("pname"));
+			pb.setTlocation(rs.getString("plocation"));
+			pb.setTprice(Integer.parseInt(rs.getString("pprice")));
+			pb.setTinfor(rs.getString("pinfor"));
+			lists.add(pb);
 		}
 		return lists;
 	}
-	
+	public ProdBean selectNumProd(String pnum)throws Exception{
+		Connection conn=getConnection();
+		ProdBean pb=new ProdBean(); 
+		String sql = "select * from prodtrade where pnum = "+pnum;
+		ps =conn.prepareStatement(sql);
+		rs   = ps.executeQuery();
+		if(rs.next()) {
+			pb.setPnum(rs.getString("pnum"));
+			pb.setId(rs.getString("pid"));
+			pb.setTimg(rs.getString("pimg"));
+			pb.setTcate(rs.getString("pcate"));
+			pb.setTname(rs.getString("pname"));
+			pb.setTlocation(rs.getString("plocation"));
+			pb.setTprice(Integer.parseInt(rs.getString("pprice")));
+			pb.setTinfor(rs.getString("pinfor"));
+		}
+		return pb;
+		
+	}
+	public int DeleteNumIDProd(String tnum, String id)throws Exception{
+		Connection conn=getConnection();
+		int cnt =0;
+		String sql = "delete * from prodtrade where id = "+id+" tnum = "+tnum;
+		ps =conn.prepareStatement(sql);
+		cnt   = ps.executeUpdate();
+		
+		return cnt;
+		
+	}
 }
