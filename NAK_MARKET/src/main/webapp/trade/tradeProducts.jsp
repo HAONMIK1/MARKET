@@ -37,10 +37,8 @@ button {
 		</tr>
 		
 		<tr>
-		<td colspan="2" align="center" >
-		<button class="fqUDQ" >장바구니 </button>
-		
-		<button class="fqUDQ" >바로구매</button>
+		<td colspan="2" align="right" >
+		<button class="fqUDQ" >댓 글  </button>
 		</td>
 		</tr>
 	</table>

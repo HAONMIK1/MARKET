@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import market.prod.ProdBean;
+import market.prod.ProdDao;
 
 
 public class ProdUserDao {
@@ -71,7 +72,16 @@ public class ProdUserDao {
 	        ps.setString(6, pb.getTinfor());
 
 	        cnt = ps.executeUpdate();
-	    return cnt;
+	        int tnum =0;
+	        if(cnt==1) {
+	        	String sql2 = "select * from prodtrade_"+id +" order by tnum";
+	        	ps = conn.prepareStatement(sql2);
+	        	rs =ps.executeQuery();
+	        	if(rs.next()) {
+	        		tnum = rs.getInt("tnum");
+	        	}
+	        }
+	    return tnum;
 	}
 	public ProdUserBean selectNumProd(String tnum, String id)throws Exception{
 		Connection conn=getConnection();
@@ -91,17 +101,41 @@ public class ProdUserDao {
 		return pb;
 		
 	}
-	public int DeleteNumProd(String tnum, String id)throws Exception{
+	public int DeleteNumProd(int tnum, String id)throws Exception{
 		Connection conn=getConnection();
 		int cnt =0;
 		String sql = "delete from prodtrade_"+id+" where tnum = "+tnum;
 		ps =conn.prepareStatement(sql);
 		cnt   = ps.executeUpdate();
-		
-		return cnt;
+		int cntt=0;
+		if(cnt==1) {
+		ProdDao pdao=ProdDao.getInstance();
+		cntt =pdao.DeleteNumIDProd(tnum, id);
+		}
+		return cntt;
 		
 	}
-	
+	public int UpdateUser(ProdUserBean pb,String id,int tnum) throws Exception{
+		int cnt = 0;
+
+        conn = getConnection();
+        String tableName = "prodtrade_" + id;
+        
+        String sql = "update "+tableName+" set timg = ? ,tname =? ,tcate = ?, tlocation = ?, tprice =? , tinfor = ? where tnum = ?";
+
+        ps = conn.prepareStatement(sql);
+        ps.setString(1, pb.getTimg());
+        ps.setString(2, pb.getTname());
+        ps.setString(3, pb.getTcate());
+        ps.setString(4, pb.getTlocation());
+        ps.setInt(5, pb.getTprice());
+        ps.setString(6, pb.getTinfor());
+        ps.setInt(7, tnum);
+
+        cnt = ps.executeUpdate();
+   
+    return cnt;
+	}
 
 
 }

@@ -33,10 +33,10 @@ public class ProdDao {
 		System.out.println("conn:"+conn);
 		return conn;
 	}
-	public int insertUser(ProdBean pb) throws Exception {
+	public int insertUser(ProdBean pb,int tnum) throws Exception {
 		Connection conn=getConnection();
 		int cnt=0;
-		String sql ="insert into prodtrade values(ptradeseq.nextval,?,?,?,?,?,?,?)";
+		String sql ="insert into prodtrade values(ptradeseq.nextval,?,?,?,?,?,?,?,?)";
 		ps =conn.prepareStatement(sql);
 		ps.setString(1, pb.getId());
 		ps.setString(2, pb.getTimg());
@@ -45,6 +45,7 @@ public class ProdDao {
 		ps.setString(5, pb.getTlocation());
 		ps.setInt(6, pb.getTprice());
 		ps.setString(7, pb.getTinfor());
+		ps.setInt(8, tnum);
 		cnt = ps.executeUpdate();
 		return cnt;
 	}
@@ -87,14 +88,36 @@ public class ProdDao {
 		return pb;
 		
 	}
-	public int DeleteNumIDProd(String tnum, String id)throws Exception{
+	public int DeleteNumIDProd(int tnum, String id)throws Exception{
 		Connection conn=getConnection();
 		int cnt =0;
-		String sql = "delete * from prodtrade where id = "+id+" tnum = "+tnum;
+		String sql = "delete from prodtrade where pid = ? and tnum = ? ";
 		ps =conn.prepareStatement(sql);
+		ps.setString(1, id);
+		ps.setInt(2, tnum);
 		cnt   = ps.executeUpdate();
 		
 		return cnt;
 		
+	}
+	public int UpdateUser(ProdBean pb,String id,int tnum) throws Exception{
+		int cnt = 0;
+
+        conn = getConnection();
+        
+        String sql = "update prodtrade sset pimg = ? ,pname =? ,pcate = ?, plocation = ?, pprice =? , pinfor = ? where pid = ? and tnum = ?";
+
+        ps = conn.prepareStatement(sql);
+        ps.setString(1, pb.getTimg());
+        ps.setString(2, pb.getTname());
+        ps.setString(3, pb.getTcate());
+        ps.setString(4, pb.getTlocation());
+        ps.setInt(5, pb.getTprice());
+        ps.setString(6, pb.getTinfor());
+        ps.setString(7, id);
+        ps.setInt(8, tnum);
+
+        cnt = ps.executeUpdate();
+    return cnt;
 	}
 }

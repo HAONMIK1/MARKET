@@ -21,8 +21,8 @@ request.setCharacterEncoding("UTF-8");
 ProdUserDao puDao=ProdUserDao.getInstance();
 ProdDao pDao=ProdDao.getInstance();
 	System.out.print(PUB.getTlocation());
-	int cnt = pDao.insertUser(PB);
-	 cnt = puDao.insertUser(PUB,id);
+	int tnum = puDao.insertUser(PUB,id);
+	int cnt = pDao.insertUser(PB,tnum);
 if(cnt>=1){
 	
 %>
