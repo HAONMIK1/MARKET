@@ -2,17 +2,11 @@ package market.users;
 
 public class UserBean {
 	
-	private int no;
 	private String id;
 	private String password;
 	private String name;
 	private String hp;
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
+
 	public String getId() {
 		return id;
 	}

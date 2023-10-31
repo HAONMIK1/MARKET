@@ -59,8 +59,7 @@ public class ProdUserDao {
 
 	        conn = getConnection();
 	        String tableName = "prodtrade_" + id;
-	        String seqName = "trade_" + id+"seq";
-	        
+	        String seqName = "trade_"+id+"seq";
 	        String sql = "INSERT INTO " + tableName + " VALUES("+seqName+".nextval, ?, ?, ?, ?, ?, ?)";
 
 	        ps = conn.prepareStatement(sql);

@@ -33,7 +33,7 @@ public class TradeBoardDao {
 	public int insertUser(TradeBoardBean pb,int tnum) throws Exception {
 		Connection conn=getConnection();
 		int cnt=0;
-		String sql ="insert into prodBoards values(prodboardseq.nextval,?,?,?,?,?,?,?,?,?)";
+		String sql ="insert into prodBoards values(board_seq.nextval,?,?,?,?,?,?,?,?,?)";
 		ps =conn.prepareStatement(sql);
 		ps.setString(1, pb.getId());
 		ps.setInt(2, pb.getTnum());
@@ -50,7 +50,7 @@ public class TradeBoardDao {
 	public ArrayList<TradeBoardBean> selectProd(String id,int tnum) throws Exception{
 		Connection conn=getConnection();
 		ArrayList<TradeBoardBean> lists =new ArrayList<TradeBoardBean>() ; 
-		String sql = "select * from prodBoards where id = ? and tnum = ?";
+		String sql = "select * from prodBoards where id = ? and tnum = ? and step= 0";
 		ps =conn.prepareStatement(sql);
 		ps.setString(1, id);
 		ps.setInt(2, tnum);
@@ -109,7 +109,7 @@ public class TradeBoardDao {
 		Connection conn=getConnection();
 
 		int cnt = -1;
-		String sql = "insert into board(num,id,tnum,"
+		String sql = "insert into prodBoards(num,id,tnum,"
 				+ "regdate,ref,step,depth,content,ip) "
 				+ "values(board_seq.nextval,?,?,?,?,?,?,?,?)";
 		
@@ -144,7 +144,7 @@ public class TradeBoardDao {
 			pb.setId(rs.getString("id"));
 			pb.setTnum(Integer.parseInt(rs.getString("tnum")));
 			pb.setReadcount(Integer.parseInt(rs.getString("readcount")));
-			pb.setRef(Integer.parseInt(rs.getString("ref")));
+			pb.setRef(ref);
 			pb.setStep(Integer.parseInt(rs.getString("step")));
 			pb.setDepth(Integer.parseInt(rs.getString("depth")));
 			pb.setRegdate(rs.getTimestamp("regdate"));

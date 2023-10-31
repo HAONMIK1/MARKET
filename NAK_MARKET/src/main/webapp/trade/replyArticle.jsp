@@ -21,9 +21,9 @@ if(cnt==1){
 	%>
 	<script type="text/javascript">
 	alert("yes");
-	location.href="tradeProducts.jsp?id=<%=bb.getId()%>&pnum=<%=bb.getTnum()%>";
 </script>
 	<%
+	response.sendRedirect("tradeProducts.jsp?id="+bb.getId()+"&pnum="+bb.getTnum());
 }
 else{
 	%>

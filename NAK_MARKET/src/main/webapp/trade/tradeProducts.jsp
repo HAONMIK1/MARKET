@@ -135,6 +135,7 @@ div {
 							<form action="replyArticle.jsp" method="post">
 								<input type="hidden" name="id" value="<%=id%>"> 
 								<input type="hidden" name="tnum" value="<%=pb.getTnum()%>">
+								<input type="hidden" name="ref" value="<%=tbb.getRef()%>">
 								<textarea rows="5" cols="70" name="content"></textarea>
 								<button type="submit">
 									<b>등록 </b>
@@ -145,9 +146,9 @@ div {
 					<tr>
 						<td>
 							<%
-						 ArrayList<TradeBoardBean> lists2 = dao.selectReply(id, tbb.getNum(),tbb.getRef());
+						 ArrayList<TradeBoardBean> lists2 = dao.selectReply(pb.getId(), tbb.getNum(),tbb.getRef());
 							if(lists2.size()==0){}else{
-							for (int j = 0; j < lists.size(); j++) {
+							for (int j = 0; j < lists2.size(); j++) {
 								TradeBoardBean tbb2 = lists2.get(j);
 							%>
 								

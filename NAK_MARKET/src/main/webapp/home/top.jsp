@@ -50,7 +50,7 @@ if (id == null) {
  %>
  <%
  for (String i : cate1) {
- %> <a href="../trade/tradeCate.jsp?id=<%=id%>&tcate=<%=i%>"><%=i%></a> &nbsp; &nbsp; &nbsp; 
+ %> <a href="../trade/tradeCate2.jsp?id=<%=id%>&tcate=<%=i%>"><%=i%></a> &nbsp; &nbsp; &nbsp; 
  <%
  }
  %> 

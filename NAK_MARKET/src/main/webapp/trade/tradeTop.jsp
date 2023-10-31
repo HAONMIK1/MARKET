@@ -54,7 +54,7 @@ a {
  %>
  <%
  for (String i : cate1) {
- %> <a href="../trade/tradeCate.jsp?id=<%=id%>&tcate=<%=i%>"><%=i%></a> &nbsp; &nbsp; &nbsp; 
+ %> <a href="tradeCate2.jsp?id=<%=id%>&tcate=<%=i%>"><%=i%></a> &nbsp; &nbsp; &nbsp; 
  <%
  }
  %> 

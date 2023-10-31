@@ -1,26 +1,20 @@
-회원가입
--- 회원 테이블 생성
-
-drop sequence userseq ;
-create sequence userseq nocache ;
-
 drop table users purge ;
 create table users(
-	no number primary key,
 	name varchar2(30) not null,
-	id varchar2(12) not null,
+	id varchar2(12) primary key,
 	password varchar2(12),
 	hp varchar2(20)				
 );
 
-insert into users(no, name, id, password,hp)  values(userseq.nextval, '어드민', 'admin', '1234', '010-1111-1111') ;
+create sequence trade_adminseq  ;
+insert into users(name, id, password,hp)  values('어드민', 'admin', '1234', '010-1111-1111') ;
 
 commit;
---admin
-drop sequence tradeseq ;
+
+drop sequence ptradeseq ;
 drop table prodtrade purge ;
 
-create sequence tradeseq nocache ;
+create sequence ptradeseq nocache ;
 create table prodtrade(
  	pnum		number primary key, 
 	pid			varchar2(100) not null, 
@@ -29,30 +23,12 @@ create table prodtrade(
 	pcate 		varchar2(50) not null ,
 	plocation 	varchar2(50) not null ,
 	pprice	 	number not null ,
-	pinfor	 	varchar2(1000) not null
-);
-commit;
-insert into prodtrade values(tradeseq.nextval,'noa2006', 'Mac.jpg', '맥북프로 16인치', '디지털', '고양시 덕양구 행신동',2600000,'팜') ;
-
---사용자
-drop sequence tradeseq_?;
-drop table prodtrade_? purge ;
-
-create sequence tradeseq_? nocache ;
-create table prodtrade_?(
-	tnum 	number primary key, 
-	timg 	varchar2(100) not null, 
-	tname 	varchar2(50) not null ,
-	tcate 	varchar2(50) not null ,
-	tlocation 	varchar2(50) not null ,
-	tprice	 number not null ,
-	tinfor	 varchar2(1000) not null
+	pinfor	 	varchar2(1000) not null,
+	tnum		number not null
 );
 commit;
 
-insert into prodtrade values(tradeseq.nextval, 'Mac.jpg', '맥북프로 16인치', '디지털', '고양시 덕양구 행신동',2600000,'팜') ;
-
--- 게시판 테이블 만들기
+create sequence board_seq  ;
 drop table prodBoards purge ;      
 create table prodBoards(
 	num number primary key,
@@ -66,5 +42,3 @@ create table prodBoards(
 	content varchar2(4000),
 	ip varchar2(20)
 );
-drop sequence prodboardseq ;
-create sequence prodboardseq nocache;  

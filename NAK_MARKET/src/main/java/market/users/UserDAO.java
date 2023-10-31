@@ -32,7 +32,7 @@ public class UserDAO {
 	public int insertUser(UserBean ub) throws Exception {
 		Connection conn=getConnection();
 		int cnt=0;
-		String sql ="insert into users values(userseq.nextval,?,?,?,?)";
+		String sql ="insert into users values(?,?,?,?)";
 		ps =conn.prepareStatement(sql);
 		ps.setString(1, ub.getName());
 		ps.setString(2, ub.getId());
@@ -102,7 +102,7 @@ public class UserDAO {
         String seqName = "trade_" + id+"seq";
 
 String createTableSQL = "CREATE TABLE " + tableName + " ("
-	            + "tnum NUMBER PRIMARY KEY, "
+	            + "tnum NUMBER , "
 	            + "timg VARCHAR(255), "
 	            + "tname VARCHAR(255), "
 	            + "tcate VARCHAR(255), "
@@ -113,11 +113,15 @@ String createTableSQL = "CREATE TABLE " + tableName + " ("
 	    
 	    PreparedStatement createTableStatement = conn.prepareStatement(createTableSQL);
 	    createTableStatement.executeUpdate();
+	 
+	    String createSequenceSQL = "CREATE SEQUENCE " + seqName + " "
+	            + "START WITH 1 "
+	            + "INCREMENT BY 1 "
+	            + "MAXVALUE 999999999 "
+	            + "NOCYCLE";
 	    
-	    String createSequenceSQL = "CREATE SEQUENCE "+seqName+" nocache";
-	    createTableStatement.executeUpdate();
-
-	    
+	    PreparedStatement createSequenceStatement = conn.prepareStatement(createSequenceSQL);
+	    createSequenceStatement.executeUpdate();
 	}
 
 	

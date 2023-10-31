@@ -18,7 +18,8 @@ https://login.coupang.com/login/memberJoinFrm.pang?rtnUrl=https%3A%2F%2Fwww.coup
   		<td>
   			<form action="joinProc.jsp" method="post">
   			<h1 align="center">회원가입</h1>
-  			<input type="text" class="join" onKeyUp="idcheck()" name="id" placeholder="아이디">
+  			<input type="text" class="join"  name="id" placeholder="아이디">
+  			<input type="button" onclick="idcheck()" value="중복체크">
   			<span id="idmessage"></span><br><br>
   			<input type="text" class="join"  name="password" onBlur="pwcheck()"  placeholder="비밀번호 (영문 소문자/숫자 조합 3~8)"><br>
   			<br>
