@@ -147,12 +147,14 @@ div {
 						<td>
 							<%
 						 ArrayList<TradeBoardBean> lists2 = dao.selectReply(pb.getId(), tbb.getNum(),tbb.getRef());
-							if(lists2.size()==0){}else{
+							System.out.print(pb.getId()+" "+ tbb.getNum()+" "+tbb.getRef()+" "+lists2.size());
+							if(lists2.size()==0){}else{%>
+									<table class="nak">
+							<% 
 							for (int j = 0; j < lists2.size(); j++) {
 								TradeBoardBean tbb2 = lists2.get(j);
 							%>
 								
-									<table class="nak">
 										<tr>
 											<td><%=tbb.getId()%></td>
 										</tr>
@@ -162,8 +164,9 @@ div {
 										<tr>
 											<td><%=tbb.getRegdate()%></td>
 										</tr>
+								<%}	%>
 									</table>
-								<%}	}%>
+							<% }%>
 								</td>
 								</tr>
 							</table>

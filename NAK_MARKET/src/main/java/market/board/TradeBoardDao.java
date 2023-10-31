@@ -129,13 +129,13 @@ public class TradeBoardDao {
 			return cnt = ps.executeUpdate();
 
 		} 
-	public ArrayList<TradeBoardBean> selectReply(String id,int num,int ref) throws Exception{
+	public ArrayList<TradeBoardBean> selectReply(String id,int tnum,int ref) throws Exception{
 		Connection conn=getConnection();
 		ArrayList<TradeBoardBean> lists =new ArrayList<TradeBoardBean>() ; 
-		String sql = "select * from prodBoards where id = ? and num = ? and ref = ? and step = 1";
+		String sql = "select * from prodBoards where id = ? and tnum = ? and ref = ? and step = 1";
 		ps =conn.prepareStatement(sql);
 		ps.setString(1, id);
-		ps.setInt(2, num);
+		ps.setInt(2, tnum);
 		ps.setInt(3, ref);
 		rs   = ps.executeQuery();
 		while(rs.next()) {
