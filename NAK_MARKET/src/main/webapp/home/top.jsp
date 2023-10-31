@@ -41,7 +41,7 @@ if (id == null) {
  }
  %> <br>
 	<tr>
-		<form action="" method="post">
+		<form action="../trade/tradeSearch.jsp" method="post">
 			<th><span style="text-align: left;" class="left"> NAK &nbsp;
 			 			<a href="../trade/tradeMain.jsp?id=<%=id%>">중고거래</a> &nbsp; 
 			</span> 

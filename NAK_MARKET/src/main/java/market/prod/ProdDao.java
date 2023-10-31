@@ -162,4 +162,26 @@ public class ProdDao {
 		}
 		return lists;
 	}
+	public ArrayList<ProdBean> selectSearch(String search)throws Exception{
+		Connection conn=getConnection();
+		ArrayList<ProdBean> lists =new ArrayList<ProdBean>() ; 
+		String sql = "select * from prodtrade where pname like ? or pinfor like ?";
+	    ps = conn.prepareStatement(sql);
+	    ps.setString(1, "%" + search + "%");
+	    ps.setString(2, "%" + search + "%");
+		rs   = ps.executeQuery();
+		while(rs.next()) {
+			ProdBean pb=new ProdBean(); 
+			pb.setPnum(rs.getString("pnum"));
+			pb.setId(rs.getString("pid"));
+			pb.setTimg(rs.getString("pimg"));
+			pb.setTcate(rs.getString("pcate"));
+			pb.setTname(rs.getString("pname"));
+			pb.setTlocation(rs.getString("plocation"));
+			pb.setTprice(Integer.parseInt(rs.getString("pprice")));
+			pb.setTinfor(rs.getString("pinfor"));
+			lists.add(pb);
+		}
+		return lists;
+	}
 }

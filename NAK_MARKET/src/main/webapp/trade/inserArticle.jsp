@@ -18,11 +18,13 @@ System.out.print(bb.getTnum());
 
 int cnt = bdao.insertArticle(bb); 
 if(cnt==1){
+	
 	%>
 <script type="text/javascript">
-	location.href="tradeProducts.jsp?id=<%=bb.getId()%>&pnum=<%=bb.getTnum()%>";
+alert("댓글");
 </script>
 	<%
+response.sendRedirect("tradeProducts.jsp?id="+bb.getId()+"&pnum="+bb.getTnum());
 }
 else{
 	%>

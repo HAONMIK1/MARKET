@@ -16,15 +16,15 @@ drop table prodtrade purge ;
 
 create sequence ptradeseq nocache ;
 create table prodtrade(
- 	pnum		number primary key, 
-	pid			varchar2(100) not null, 
-	pimg 		varchar2(100) not null, 
-	pname 		varchar2(50) not null ,
-	pcate 		varchar2(50) not null ,
-	plocation 	varchar2(50) not null ,
-	pprice	 	number not null ,
-	pinfor	 	varchar2(1000) not null,
-	tnum		number not null
+ 	pnum			number primary key, 
+	pid				varchar2(100) not null, 
+	pimg 			varchar2(100) not null, 
+	pname 			varchar2(50) not null ,
+	pcate 			varchar2(50) not null ,
+	plocation 		varchar2(50) not null ,
+	pprice	 		number not null ,
+	pinfor	 		varchar2(1000) not null,
+	tnum			number not null
 );
 commit;
 

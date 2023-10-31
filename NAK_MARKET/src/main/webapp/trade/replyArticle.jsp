@@ -20,7 +20,7 @@ int cnt = bdao.replyArticle(bb);
 if(cnt==1){
 	%>
 	<script type="text/javascript">
-	alert("yes");
+	alert("답글");
 </script>
 	<%
 	response.sendRedirect("tradeProducts.jsp?id="+bb.getId()+"&pnum="+bb.getTnum());
