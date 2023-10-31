@@ -24,21 +24,23 @@ button {
 		%>
 <tr>
 	<td width="1000" height="500">
+	<form action="UserProdUpdateProc.jsp?id=<%=id%>&tnum=<%=tnum%>"  method="post">
 		<table border="0">
 			<tr>
 				<td rowspan="4">
-				<img alt="" src="../img/<%=pub.getTimg()%> " width="400">
-				<input type="file" accept="image/jpg, image/jpeg, image/png" name="timg" multiple>
+				<img alt="" src="../img/<%=pub.getTimg()%> " width="400" >
+				<input type="hidden"  name="timg"  value="<%=pub.getTimg()%>">
+				<input type="file" accept="image/jpg, image/jpeg, image/png" name="retimg"  multiple>
 				<td>
 				<td width="300" align="center">
 					<table border="0">
 						<tr>
 							<td>
 								<%
-								String[] cate1 = { "여성의류", "남성의류", "신발", "가방/지갑", "시계", "쥬얼리", "디지털", "가전제품", "가구/인테리어", "생활/주방용품", };
+								 String[] cate = {"남성의류", "신발", "가방", "시계", "쥬얼리", "디지털", "인테리어" };
 								%> <select multiple name="tcate">
 									<%
-									for (String i : cate1) {
+									for (String i : cate) {
 									%>
 									<option value="<%=i%>" <%if(i.equals(pub.getTcate())){ %> selected <%} %>> <%=i %></option>
 									<%
@@ -48,11 +50,11 @@ button {
 							</td>
 						</tr>
 						<tr>
-							<td> <input type="text" name="tname" placeholder=" <%=pub.getTname()%> ">  </td>
+							<td> <input type="text" name="tname" value=" <%=pub.getTname()%> ">  </td>
 						</tr>
 						<tr>
 							<td>
-							<input type="text" placeholder="<%=pub.getTprice()%>" name="tprice"> 원 
+							<input type="text" value="<%=pub.getTprice()%>" name="tprice"> 원 
 								</td>
 						</tr>
 						<tr>
@@ -64,12 +66,12 @@ button {
 
 			<tr>
 				<td colspan="2" align="center">
-					<button class="fqUDQ"
-						onclick="location.href='UserProdUpdateProc.jsp?id=<%=id%>&tnum=<%=tnum%>'">
+					<button class="fqUDQ" type="submit" >
 						수 정</button>
 
 					<button class="fqUDQ"
 						onclick="location.href='tradeuser.jsp?id=<%=id%>'">취소 </button>
+	</form>
 				</td>
 			</tr>
 		</table>

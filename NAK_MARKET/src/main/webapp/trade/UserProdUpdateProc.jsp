@@ -6,10 +6,11 @@
 request.setCharacterEncoding("UTF-8");
 	String[] timgs = request.getParameterValues("timg"); 
 	String id =request.getParameter("id");
+	String retimg =request.getParameter("retimg");
 	int tnum =Integer.parseInt(request.getParameter("tnum"));
-	String timg=null;
+	String timg="";
 	for(int i =0 ;i<timgs.length;i++){
-	timg +=timgs[i];
+	timg += timgs[i];
 	}
 %>
 <jsp:useBean id="PUB" class="market.produser.ProdUserBean"/>
@@ -17,7 +18,11 @@ request.setCharacterEncoding("UTF-8");
 <jsp:useBean id="PB" class="market.prod.ProdBean"/>
 <jsp:setProperty property="*" name="PB"/>
 <%
-	PUB.setTimg(timg);
+	if(!retimg.equals(null))
+	{
+		PUB.setTimg(retimg);
+		PB.setTimg(retimg);
+	}
 ProdUserDao puDao=ProdUserDao.getInstance();
 ProdDao pDao=ProdDao.getInstance();
 	System.out.print(PUB.getTlocation());

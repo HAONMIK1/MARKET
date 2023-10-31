@@ -9,6 +9,7 @@ ol, ul {
 	list-style: none;
 }
 </style>
+
 <%@include file="tradeTop.jsp" %>
 <tr>
 	<td width="1000" height="500">
@@ -44,11 +45,11 @@ ol, ul {
 							<div>
 								<div>
 									<%
-									String[] cate1 = {"여성의류", "남성의류", "신발", "가방/지갑", "시계", "쥬얼리", "디지털", "가전제품", "가구/인테리어", "생활/주방용품",};
+									 String[] cate = {"남성의류", "신발", "가방", "시계", "쥬얼리", "디지털", "인테리어" };
 									%>
 									<select multiple name="tcate">
 										<%
-										for (String i : cate1) {
+										for (String i : cate) {
 										%>
 										<option value="<%=i%>"><%=i%></option>
 										<%

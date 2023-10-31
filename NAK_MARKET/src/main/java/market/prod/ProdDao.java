@@ -76,6 +76,7 @@ public class ProdDao {
 		ps =conn.prepareStatement(sql);
 		rs   = ps.executeQuery();
 		if(rs.next()) {
+			pb.setTnum(Integer.parseInt(rs.getString("tnum")));
 			pb.setPnum(rs.getString("pnum"));
 			pb.setId(rs.getString("pid"));
 			pb.setTimg(rs.getString("pimg"));
@@ -105,19 +106,60 @@ public class ProdDao {
 
         conn = getConnection();
         
-        String sql = "update prodtrade sset pimg = ? ,pname =? ,pcate = ?, plocation = ?, pprice =? , pinfor = ? where pid = ? and tnum = ?";
+        String sql = "update prodtrade set pimg = ? ,pname =? ,pcate = ?,  pprice =? , pinfor = ? where pid = ? and tnum = ?";
 
         ps = conn.prepareStatement(sql);
         ps.setString(1, pb.getTimg());
         ps.setString(2, pb.getTname());
         ps.setString(3, pb.getTcate());
-        ps.setString(4, pb.getTlocation());
-        ps.setInt(5, pb.getTprice());
-        ps.setString(6, pb.getTinfor());
-        ps.setString(7, id);
-        ps.setInt(8, tnum);
+        ps.setInt(4, pb.getTprice());
+        ps.setString(5, pb.getTinfor());
+        ps.setString(6, id);
+        ps.setInt(7, tnum);
 
         cnt = ps.executeUpdate();
     return cnt;
+	}
+	public ArrayList<ProdBean> selectTloca(String tloca) throws Exception{
+		Connection conn=getConnection();
+		ArrayList<ProdBean> lists =new ArrayList<ProdBean>() ; 
+		String sql = "select * from prodtrade where plocation = ?";
+		ps =conn.prepareStatement(sql);
+		ps.setString(1, tloca);
+		rs   = ps.executeQuery();
+		while(rs.next()) {
+			ProdBean pb=new ProdBean(); 
+			pb.setPnum(rs.getString("pnum"));
+			pb.setId(rs.getString("pid"));
+			pb.setTimg(rs.getString("pimg"));
+			pb.setTcate(rs.getString("pcate"));
+			pb.setTname(rs.getString("pname"));
+			pb.setTlocation(rs.getString("plocation"));
+			pb.setTprice(Integer.parseInt(rs.getString("pprice")));
+			pb.setTinfor(rs.getString("pinfor"));
+			lists.add(pb);
+		}
+		return lists;
+	}
+	public ArrayList<ProdBean> selectTcate(String tcate)throws Exception{
+		Connection conn=getConnection();
+		ArrayList<ProdBean> lists =new ArrayList<ProdBean>() ; 
+		String sql = "select * from prodtrade where pcate = ?";
+		ps =conn.prepareStatement(sql);
+		ps.setString(1, tcate);
+		rs   = ps.executeQuery();
+		while(rs.next()) {
+			ProdBean pb=new ProdBean(); 
+			pb.setPnum(rs.getString("pnum"));
+			pb.setId(rs.getString("pid"));
+			pb.setTimg(rs.getString("pimg"));
+			pb.setTcate(rs.getString("pcate"));
+			pb.setTname(rs.getString("pname"));
+			pb.setTlocation(rs.getString("plocation"));
+			pb.setTprice(Integer.parseInt(rs.getString("pprice")));
+			pb.setTinfor(rs.getString("pinfor"));
+			lists.add(pb);
+		}
+		return lists;
 	}
 }

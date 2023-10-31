@@ -24,7 +24,6 @@
                                 로그인
                             </button>
 <br>
-<hr style="background-color:  gray;">
 <br>
 <button type="button"  class="join" onclick="location.href='join.jsp'">회원가입</button>
 </td>

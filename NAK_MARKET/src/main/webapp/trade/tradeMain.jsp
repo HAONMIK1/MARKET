@@ -47,6 +47,11 @@
 }
 </style>
 <%@include file="tradeTop.jsp"%>
+
+<script>
+function showPopup() { window.open("popup.jsp?id=<%=id%>", "위치등록", "width=400, height=300, left=100, top=50"); }
+</script>
+
 <tr>
 	<td width="1000" height="500">
 		<section class="fleamarket-cover">
@@ -61,45 +66,54 @@
 		</section>
 		<section>
 			<h1 class="text-center article-list-title">중고거래 인기매물</h1>
-			<button class="location">위치등록</button>
+			<input type="button" value="<%=tloca %> " name="tloca" onclick="showPopup();">
+
 		</section>
 		<section>
 			<%
 			ProdDao pdao = ProdDao.getInstance();
-			ArrayList<ProdBean> lists = pdao.selectProd();;
+			ArrayList<ProdBean> lists ;
+			if(tloca.equals("위치등록")){
+			lists = pdao.selectProd();
+			}else{
+			
+			lists = pdao.selectTloca(tloca);
+			}
 			%>
 			<table align="center">
 				<tr align="center">
 					<%
+					if(lists.size()==0){
+						%><td> 등록된 상품이 없습니다 </td><%
+					}else{
 					for (int i = 0; i < lists.size(); i++) {
 						ProdBean pub = lists.get(i);
 					%>
-					<td width="400" align="center"><a href="tradeProducts.jsp?id=<%=id%>&pnum=<%=pub.getPnum()%>">
-					<img
-						src="../img/<%=pub.getTimg()%>" width="300"> <br>
-						<table height ="60" align="center">
-							<tr>
-								<td><%=pub.getTcate()%></td> 
-							</tr>
-							<tr>
-								<td><%=pub.getTlocation()%></td>
-							</tr>
-							<tr>
-								<td><%=pub.getTname()%></td>
-							</tr>
-							<tr>
-								<td><%=pub.getTprice()%></td>
-							</tr>
-						</table>
-						</a>
-						</td>
+					<td width="400" align="center"><a
+						href="tradeProducts.jsp?id=<%=id%>&pnum=<%=pub.getPnum()%>"> 
+						<img src="../img/<%=pub.getTimg()%>" width="300"> <br>
+							<table height="60" align="center">
+								<tr>
+									<td><%=pub.getTcate()%></td>
+								</tr>
+								<tr>
+									<td><%=pub.getTlocation()%></td>
+								</tr>
+								<tr>
+									<td><%=pub.getTname()%></td>
+								</tr>
+								<tr>
+									<td><%=pub.getTprice()%></td>
+								</tr>
+							</table>
+					</a></td>
 					<%
 					if ((i + 1) % 3 == 0) {
 					%>
 				</tr>
 				<%
 				}
-				}
+				}}
 				%>
 				</tr>
 			</table>

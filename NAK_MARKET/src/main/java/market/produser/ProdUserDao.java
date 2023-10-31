@@ -121,16 +121,15 @@ public class ProdUserDao {
         conn = getConnection();
         String tableName = "prodtrade_" + id;
         
-        String sql = "update "+tableName+" set timg = ? ,tname =? ,tcate = ?, tlocation = ?, tprice =? , tinfor = ? where tnum = ?";
+        String sql = "update "+tableName+" set timg = ? ,tname =? ,tcate = ?, tprice =? , tinfor = ? where tnum = ?";
 
         ps = conn.prepareStatement(sql);
         ps.setString(1, pb.getTimg());
         ps.setString(2, pb.getTname());
         ps.setString(3, pb.getTcate());
-        ps.setString(4, pb.getTlocation());
-        ps.setInt(5, pb.getTprice());
-        ps.setString(6, pb.getTinfor());
-        ps.setInt(7, tnum);
+        ps.setInt(4, pb.getTprice());
+        ps.setString(5, pb.getTinfor());
+        ps.setInt(6, tnum);
 
         cnt = ps.executeUpdate();
    

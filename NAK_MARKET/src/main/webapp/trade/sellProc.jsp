@@ -9,7 +9,7 @@ request.setCharacterEncoding("UTF-8");
 	String id =request.getParameter("id");
 	String timg="";
 	for(int i =0 ;i<timgs.length;i++){
-	timg +=" "+timgs[i];
+	timg += timgs[i];
 	}
 %>
 <jsp:useBean id="PUB" class="market.produser.ProdUserBean"/>

@@ -2,6 +2,13 @@ package market.prod;
 
 public class ProdBean {
 	
+	private int tnum;
+	public int getTnum() {
+		return tnum;
+	}
+	public void setTnum(int tnum) {
+		this.tnum = tnum;
+	}
 	private String pnum;
 	private String id;
 	public String getPnum() {
